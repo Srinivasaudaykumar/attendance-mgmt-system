@@ -13,6 +13,19 @@
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
     <changeSet id="00000000000001" author="jhipster">
+        <createTable tableName="jhi_organization">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="address" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
         <createTable tableName="jhi_user">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -42,6 +55,7 @@
             </column>
             <column name="last_modified_by" type="varchar(50)"/>
             <column name="last_modified_date" type="timestamp"/>
+            <column name="organization_id" type="bigint"/>
         </createTable>
 
         <createTable tableName="jhi_authority">
@@ -61,6 +75,7 @@
 
         <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
 
+
         <addForeignKeyConstraint baseColumnNames="authority_name"
                                  baseTableName="jhi_user_authority"
                                  constraintName="fk_authority_name"
@@ -76,6 +91,22 @@
         <addNotNullConstraint   columnName="password_hash"
                                 columnDataType="varchar(60)"
                                 tableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="organization_id"
+                                 baseTableName="jhi_user"
+                                 constraintName="fk_user_organization_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_organization"/>
+
+        <loadData
+            file="config/liquibase/fake-data/organization.csv"
+            separator=";"
+            tableName="jhi_organization">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="address" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
         <loadData
                   file="config/liquibase/data/user.csv"
                   separator=";"
@@ -93,6 +124,7 @@
                   file="config/liquibase/data/user_authority.csv"
                   separator=";"
                   tableName="jhi_user_authority"/>
+
         <createTable tableName="jhi_persistent_audit_event">
             <column name="event_id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
