@@ -22,13 +22,13 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class AttendenceMgmtSystemApp implements InitializingBean {
+public class AttendanceMgmtSystemApp implements InitializingBean {
 
-    private static final Logger log = LoggerFactory.getLogger(AttendenceMgmtSystemApp.class);
+    private static final Logger log = LoggerFactory.getLogger(AttendanceMgmtSystemApp.class);
 
     private final Environment env;
 
-    public AttendenceMgmtSystemApp(Environment env) {
+    public AttendanceMgmtSystemApp(Environment env) {
         this.env = env;
     }
 
@@ -58,7 +58,7 @@ public class AttendenceMgmtSystemApp implements InitializingBean {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(AttendenceMgmtSystemApp.class);
+        SpringApplication app = new SpringApplication(AttendanceMgmtSystemApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);

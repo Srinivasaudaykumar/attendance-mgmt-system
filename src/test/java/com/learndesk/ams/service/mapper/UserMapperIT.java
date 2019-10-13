@@ -1,6 +1,6 @@
 package com.learndesk.ams.service.mapper;
 
-import com.learndesk.ams.AttendenceMgmtSystemApp;
+import com.learndesk.ams.AttendanceMgmtSystemApp;
 import com.learndesk.ams.domain.User;
 import com.learndesk.ams.service.dto.UserDTO;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Integration tests for {@link UserMapper}.
  */
-@SpringBootTest(classes = AttendenceMgmtSystemApp.class)
+@SpringBootTest(classes = AttendanceMgmtSystemApp.class)
 public class UserMapperIT {
 
     private static final String DEFAULT_LOGIN = "johndoe";

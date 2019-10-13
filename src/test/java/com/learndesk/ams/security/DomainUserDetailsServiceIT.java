@@ -1,6 +1,6 @@
 package com.learndesk.ams.security;
 
-import com.learndesk.ams.AttendenceMgmtSystemApp;
+import com.learndesk.ams.AttendanceMgmtSystemApp;
 import com.learndesk.ams.domain.User;
 import com.learndesk.ams.repository.UserRepository;
 
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Locale;
@@ -22,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 /**
  * Integrations tests for {@link DomainUserDetailsService}.
  */
-@SpringBootTest(classes = AttendenceMgmtSystemApp.class)
+@SpringBootTest(classes = AttendanceMgmtSystemApp.class)
 @Transactional
 public class DomainUserDetailsServiceIT {
 

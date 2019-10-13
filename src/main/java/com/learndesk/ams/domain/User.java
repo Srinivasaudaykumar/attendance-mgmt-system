@@ -89,6 +89,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @JsonIgnoreProperties("users")
     private Organization organization;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private AccessCard accessCard;
+
+    @OneToMany(mappedBy = "user")
+    private Set<AttendanceEntry> attendenceEntries = new HashSet<>();
 
     @JsonIgnore
     @ManyToMany
@@ -214,6 +220,44 @@ public class User extends AbstractAuditingEntity implements Serializable {
         return this;
     }
 
+    public AccessCard getAccessCard() {
+        return accessCard;
+    }
+
+    public User accessCard(AccessCard accessCard) {
+        this.accessCard = accessCard;
+        return this;
+    }
+
+    public void setAccessCard(AccessCard accessCard) {
+        this.accessCard = accessCard;
+    }
+
+    public Set<AttendanceEntry> getAttendenceEntries() {
+        return attendenceEntries;
+    }
+
+    public User attendenceEntries(Set<AttendanceEntry> attendenceEntries) {
+        this.attendenceEntries = attendenceEntries;
+        return this;
+    }
+
+    public User addAttendenceEntry(AttendanceEntry attendanceEntry) {
+        this.attendenceEntries.add(attendanceEntry);
+        attendanceEntry.setUser(this);
+        return this;
+    }
+
+    public User removeAttendenceEntry(AttendanceEntry attendanceEntry) {
+        this.attendenceEntries.remove(attendanceEntry);
+        attendanceEntry.setUser(null);
+        return this;
+    }
+
+    public void setAttendenceEntries(Set<AttendanceEntry> attendenceEntries) {
+        this.attendenceEntries = attendenceEntries;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -245,7 +289,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
             .add("activationKey='" + activationKey + "'")
             .add("resetKey='" + resetKey + "'")
             .add("resetDate=" + resetDate)
-            .add("organization=" + organization)
             .add("authorities=" + authorities)
             .toString();
     }

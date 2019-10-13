@@ -1,6 +1,6 @@
 package com.learndesk.ams.web.rest;
 
-import com.learndesk.ams.AttendenceMgmtSystemApp;
+import com.learndesk.ams.AttendanceMgmtSystemApp;
 import com.learndesk.ams.domain.Authority;
 import com.learndesk.ams.domain.User;
 import com.learndesk.ams.repository.UserRepository;
@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@link UserResource} REST controller.
  */
-@SpringBootTest(classes = AttendenceMgmtSystemApp.class)
+@SpringBootTest(classes = AttendanceMgmtSystemApp.class)
 public class UserResourceIT {
 
     private static final String DEFAULT_LOGIN = "johndoe";

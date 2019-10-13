@@ -1,6 +1,6 @@
 package com.learndesk.ams.web.rest.errors;
 
-import com.learndesk.ams.AttendenceMgmtSystemApp;
+import com.learndesk.ams.AttendanceMgmtSystemApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests {@link ExceptionTranslator} controller advice.
  */
-@SpringBootTest(classes = AttendenceMgmtSystemApp.class)
+@SpringBootTest(classes = AttendanceMgmtSystemApp.class)
 public class ExceptionTranslatorIT {
 
     @Autowired

@@ -1,4 +1,4 @@
-# attendenceMgmtSystem
+# Attendance Management System
 
 This application was generated using JHipster 6.4.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.4.1](https://www.jhipster.tech/documentation-archive/v6.4.1).
 
@@ -91,7 +91,7 @@ will generate few files:
 
 ### Packaging as jar
 
-To build the final jar and optimize the attendenceMgmtSystem application for production, run:
+To build the final jar and optimize the attendanceMgmtSystem application for production, run:
 
     ./gradlew -Pprod clean bootJar
 

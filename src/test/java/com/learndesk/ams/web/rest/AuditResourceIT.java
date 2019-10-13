@@ -1,6 +1,6 @@
 package com.learndesk.ams.web.rest;
 
-import com.learndesk.ams.AttendenceMgmtSystemApp;
+import com.learndesk.ams.AttendanceMgmtSystemApp;
 import io.github.jhipster.config.JHipsterProperties;
 import com.learndesk.ams.config.audit.AuditEventConverter;
 import com.learndesk.ams.domain.PersistentAuditEvent;
@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@link AuditResource} REST controller.
  */
-@SpringBootTest(classes = AttendenceMgmtSystemApp.class)
+@SpringBootTest(classes = AttendanceMgmtSystemApp.class)
 @Transactional
 public class AuditResourceIT {
 
