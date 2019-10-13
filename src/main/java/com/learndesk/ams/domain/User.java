@@ -1,5 +1,6 @@
 package com.learndesk.ams.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.learndesk.ams.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,6 +19,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.StringJoiner;
 
 /**
  * A user.
@@ -82,6 +84,11 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reset_date")
     private Instant resetDate = null;
+
+    @ManyToOne
+    @JsonIgnoreProperties("users")
+    private Organization organization;
+
 
     @JsonIgnore
     @ManyToMany
@@ -198,6 +205,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public User setOrganization(Organization organization) {
+        this.organization = organization;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -216,15 +232,21 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-            "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
-            ", activated='" + activated + '\'' +
-            ", langKey='" + langKey + '\'' +
-            ", activationKey='" + activationKey + '\'' +
-            "}";
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+            .add("id=" + id)
+            .add("login='" + login + "'")
+            .add("password='" + password + "'")
+            .add("firstName='" + firstName + "'")
+            .add("lastName='" + lastName + "'")
+            .add("email='" + email + "'")
+            .add("activated=" + activated)
+            .add("langKey='" + langKey + "'")
+            .add("imageUrl='" + imageUrl + "'")
+            .add("activationKey='" + activationKey + "'")
+            .add("resetKey='" + resetKey + "'")
+            .add("resetDate=" + resetDate)
+            .add("organization=" + organization)
+            .add("authorities=" + authorities)
+            .toString();
     }
 }
