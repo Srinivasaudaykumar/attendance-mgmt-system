@@ -13,4 +13,4 @@ pluginManagement {
      }
 }
 
-rootProject.name = "attendence-mgmt-system"
+rootProject.name = "attendance-mgmt-system"

@@ -1,6 +1,6 @@
 package com.learndesk.ams.web.rest;
 
-import com.learndesk.ams.AttendenceMgmtSystemApp;
+import com.learndesk.ams.AttendanceMgmtSystemApp;
 import com.learndesk.ams.config.Constants;
 import com.learndesk.ams.domain.Authority;
 import com.learndesk.ams.domain.User;
@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@link AccountResource} REST controller.
  */
-@SpringBootTest(classes = AttendenceMgmtSystemApp.class)
+@SpringBootTest(classes = AttendanceMgmtSystemApp.class)
 public class AccountResourceIT {
 
     @Autowired

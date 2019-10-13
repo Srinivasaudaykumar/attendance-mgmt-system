@@ -1,6 +1,6 @@
 package com.learndesk.ams.repository;
 
-import com.learndesk.ams.AttendenceMgmtSystemApp;
+import com.learndesk.ams.AttendanceMgmtSystemApp;
 import com.learndesk.ams.config.Constants;
 import com.learndesk.ams.config.audit.AuditEventConverter;
 import com.learndesk.ams.domain.PersistentAuditEvent;
@@ -27,7 +27,7 @@ import static com.learndesk.ams.repository.CustomAuditEventRepository.EVENT_DATA
 /**
  * Integration tests for {@link CustomAuditEventRepository}.
  */
-@SpringBootTest(classes = AttendenceMgmtSystemApp.class)
+@SpringBootTest(classes = AttendanceMgmtSystemApp.class)
 @Transactional
 public class CustomAuditEventRepositoryIT {
 

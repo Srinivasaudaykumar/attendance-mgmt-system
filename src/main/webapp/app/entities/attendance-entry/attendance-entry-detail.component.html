@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="attendenceEntry">
+            <h2><span>Attendence Entry</span> {{attendenceEntry.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Created Date</span></dt>
+                <dd>
+                    <span>{{attendenceEntry.createdDate}}</span>
+                </dd>
+                <dt><span>Machine Id</span></dt>
+                <dd>
+                    <span>{{attendenceEntry.machineId}}</span>
+                </dd>
+                <dt><span>Access Card</span></dt>
+                <dd>
+                    <div *ngIf="attendenceEntry.accessCard">
+                        <a [routerLink]="['/access-card', attendenceEntry.accessCard?.id, 'view']">{{attendenceEntry.accessCard?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Employee</span></dt>
+                <dd>
+                    <div *ngIf="attendenceEntry.employee">
+                        <a [routerLink]="['/employee', attendenceEntry.employee?.id, 'view']">{{attendenceEntry.employee?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/attendence-entry', attendenceEntry.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

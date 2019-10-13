@@ -15,6 +15,10 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./user-management/user-management.module').then(m => m.UserManagementModule)
       },
       {
+        path: 'access-card',
+        loadChildren: () => import('./access-card/access-card.module').then(m => m.AccessCardModule)
+      },
+      {
         path: 'audits',
         loadChildren: () => import('./audits/audits.module').then(m => m.AuditsModule)
       },

@@ -56,6 +56,10 @@
             <column name="last_modified_by" type="varchar(50)"/>
             <column name="last_modified_date" type="timestamp"/>
             <column name="organization_id" type="bigint"/>
+            <column name="access_card_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_user_access_card_id" />
+            </column>
+
         </createTable>
 
         <createTable tableName="jhi_authority">
@@ -72,6 +76,36 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <createTable tableName="access_card">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="card_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
+        <createTable tableName="attendance_entry">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="true" />
+            </column>
+            <column name="machine_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="access_card_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="attendance_entry" columnName="created_date" columnDataType="datetime"/>
 
         <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
 
@@ -98,6 +132,18 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_organization"/>
 
+        <addForeignKeyConstraint baseColumnNames="access_card_id"
+                                 baseTableName="jhi_user"
+                                 constraintName="fk_user_access_card_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="access_card"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="attendance_entry"
+                                 constraintName="fk_attendance_entry_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
         <loadData
             file="config/liquibase/fake-data/organization.csv"
             separator=";"
@@ -107,6 +153,16 @@
             <column name="address" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
+
+        <loadData
+            file="config/liquibase/fake-data/access_card.csv"
+            separator=";"
+            tableName="access_card">
+            <column name="id" type="numeric"/>
+            <column name="card_number" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
+
         <loadData
                   file="config/liquibase/data/user.csv"
                   separator=";"
@@ -124,6 +180,16 @@
                   file="config/liquibase/data/user_authority.csv"
                   separator=";"
                   tableName="jhi_user_authority"/>
+
+        <loadData
+            file="config/liquibase/fake-data/attendance_entry.csv"
+            separator=";"
+            tableName="attendance_entry">
+            <column name="id" type="numeric"/>
+            <column name="created_date" type="datetime"/>
+            <column name="machine_id" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
 
         <createTable tableName="jhi_persistent_audit_event">
             <column name="event_id" type="bigint" autoIncrement="${autoIncrement}">
