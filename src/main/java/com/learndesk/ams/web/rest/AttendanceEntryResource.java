@@ -1,6 +1,7 @@
 package com.learndesk.ams.web.rest;
 
 import com.learndesk.ams.domain.AttendanceEntry;
+import com.learndesk.ams.security.SecurityUtils;
 import com.learndesk.ams.service.AttendanceEntryService;
 import com.learndesk.ams.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,6 +29,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class AttendanceEntryResource {
+
+
+    private static class AttendanceResourceException extends RuntimeException {
+        private AttendanceResourceException(String message) {
+            super(message);
+        }
+    }
 
     private final Logger log = LoggerFactory.getLogger(AttendanceEntryResource.class);
 
@@ -90,7 +99,8 @@ public class AttendanceEntryResource {
     @GetMapping("/attendance-entries")
     public ResponseEntity<List<AttendanceEntry>> getAllAttendanceEntries(Pageable pageable) {
         log.debug("REST request to get a page of AttendanceEntries");
-        Page<AttendanceEntry> page = attendanceEntryService.findAll(pageable);
+        String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new AttendanceResourceException("user login not found"));
+        Page<AttendanceEntry> page = attendanceEntryService.findAll(pageable, userLogin);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

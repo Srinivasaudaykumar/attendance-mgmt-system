@@ -1,18 +1,18 @@
 <div>
     <h2 id="page-heading">
-        <span>Attendance Entries</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-attendance-entry" [routerLink]="['/attendence-entry/new']">
+        <span>Attendance History</span>
+        <!--<button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-attendance-entry" [routerLink]="['/attendance-entry/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
             Create a new Attendance Entry
             </span>
-        </button>
+        </button>-->
     </h2>
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="alert alert-warning" *ngIf="attendanceEntries?.length === 0">
-        <span>No attendanceEntries found</span>
+        <span>No attendance history found</span>
     </div>
     <div class="table-responsive" *ngIf="attendanceEntries?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
@@ -21,8 +21,8 @@
             <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="createdDate"><span>Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="machineId"><span>Machine Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="accessCard.id"><span>Access Card</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="employee.id"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th scope="col"  jhiSortBy="accessCard.id"><span>Access Card</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+<!--            <th scope="col"  jhiSortBy="user.id"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th scope="col"></th>
             </tr>
             </thead>
@@ -31,16 +31,17 @@
                 <td><a [routerLink]="['/attendance-entry', attendanceEntry.id, 'view' ]">{{attendanceEntry.id}}</a></td>
                 <td>{{attendanceEntry.createdDate | date:'medium'}}</td>
                 <td>{{attendanceEntry.machineId}}</td>
-                <td>
-                    <div *ngIf="attendanceEntry.accessCard">
-                        <a [routerLink]="['/access-card', attendanceEntry.accessCard?.id, 'view' ]" >{{attendanceEntry.accessCard?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="attendanceEntry.user">
-                        <a [routerLink]="['/user', attendanceEntry.user?.id, 'view' ]" >{{attendanceEntry.user?.id}}</a>
-                    </div>
-                </td>
+<!--                <td>-->
+<!--                    <div *ngIf="attendanceEntry.accessCard">-->
+<!--                        <a [routerLink]="['/access-card', attendanceEntry.accessCard?.id, 'view' ]" >{{attendanceEntry.accessCard?.id}}</a>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div *ngIf="attendanceEntry.user">-->
+<!--                        <a [routerLink]="['/user', attendanceEntry.user?.id, 'view' ]" >{{attendanceEntry.user?.id}}</a>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
@@ -65,6 +66,7 @@
                         </button>
                     </div>
                 </td>
+-->
             </tr>
             </tbody>
         </table>

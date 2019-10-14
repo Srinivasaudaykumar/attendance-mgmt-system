@@ -1,7 +1,9 @@
 package com.learndesk.ams.service;
 
 import com.learndesk.ams.domain.AttendanceEntry;
+import com.learndesk.ams.domain.User;
 import com.learndesk.ams.repository.AttendanceEntryRepository;
+import com.learndesk.ams.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -20,8 +22,11 @@ public class AttendanceEntryService {
 
     private final AttendanceEntryRepository attendanceEntryRepository;
 
-    public AttendanceEntryService(AttendanceEntryRepository attendanceEntryRepository) {
+    private final UserRepository userRepository;
+
+    public AttendanceEntryService(AttendanceEntryRepository attendanceEntryRepository, UserRepository userRepository) {
         this.attendanceEntryRepository = attendanceEntryRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -39,12 +44,14 @@ public class AttendanceEntryService {
      * Get all the attendenceEntries.
      *
      * @param pageable the pagination information.
+     * @param userLogin
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<AttendanceEntry> findAll(Pageable pageable) {
+    public Page<AttendanceEntry> findAll(Pageable pageable, String userLogin) {
         log.debug("Request to get all AttendenceEntries");
-        return attendanceEntryRepository.findAll(pageable);
+        Optional<User> user = userRepository.findOneByLogin(userLogin);
+        return attendanceEntryRepository.findAllByUser(user.get(), pageable);
     }
 
 
