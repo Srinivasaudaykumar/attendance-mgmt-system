@@ -92,7 +92,7 @@ if (OperatingSystem.current().isWindows()) {
 defaultTasks "bootRun"
 
 springBoot {
-    mainClassName = "com.learndesk.ams.AttendenceMgmtSystemApp"
+    mainClassName = "com.learndesk.ams.AttendanceMgmtSystemApp"
 }
 
 test {
