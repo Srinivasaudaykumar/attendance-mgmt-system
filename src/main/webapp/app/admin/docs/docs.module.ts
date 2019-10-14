@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AttendenceMgmtSystemSharedModule } from 'app/shared/shared.module';
+import { AttendanceMgmtSystemSharedModule } from 'app/shared/shared.module';
 
 import { JhiDocsComponent } from './docs.component';
 
 import { docsRoute } from './docs.route';
 
 @NgModule({
-  imports: [AttendenceMgmtSystemSharedModule, RouterModule.forChild([docsRoute])],
+  imports: [AttendanceMgmtSystemSharedModule, RouterModule.forChild([docsRoute])],
   declarations: [JhiDocsComponent]
 })
 export class DocsModule {}

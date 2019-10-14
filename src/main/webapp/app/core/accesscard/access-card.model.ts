@@ -1,13 +1,13 @@
-import { IAttendenceEntry } from 'app/shared/model/attendance-entry.model';
+import { IAttendanceEntry } from 'app/shared/model/attendance-entry.model';
 import { IUser } from 'app/core/user/user.model';
 
 export interface IAccessCard {
   id?: number;
   cardNumber?: string;
-  attendenceEntries?: IAttendenceEntry[];
+  attendanceEntries?: IAttendanceEntry[];
   user?: IUser;
 }
 
 export class AccessCard implements IAccessCard {
-  constructor(public id?: number, public cardNumber?: string, public attendenceEntries?: IAttendenceEntry[], public user?: IUser) {}
+  constructor(public id?: number, public cardNumber?: string, public attendanceEntries?: IAttendanceEntry[], public user?: IUser) {}
 }

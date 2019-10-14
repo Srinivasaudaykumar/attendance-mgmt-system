@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { AttendenceMgmtSystemTestModule } from '../../../test.module';
+import { AttendanceMgmtSystemTestModule } from '../../../test.module';
 import { UserManagementDeleteDialogComponent } from 'app/admin/user-management/user-management-delete-dialog.component';
 import { UserService } from 'app/core/user/user.service';
 
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [AttendenceMgmtSystemTestModule],
+        imports: [AttendanceMgmtSystemTestModule],
         declarations: [UserManagementDeleteDialogComponent]
       })
         .overrideTemplate(UserManagementDeleteDialogComponent, '')

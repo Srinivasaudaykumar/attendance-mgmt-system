@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ProdConfig } from './blocks/config/prod.config';
-import { AttendenceMgmtSystemAppModule } from './app.module';
+import { AttendanceMgmtSystemAppModule } from './app.module';
 
 ProdConfig();
 
@@ -9,7 +9,7 @@ if (module['hot']) {
 }
 
 platformBrowserDynamic()
-  .bootstrapModule(AttendenceMgmtSystemAppModule, { preserveWhitespaces: true })
+  .bootstrapModule(AttendanceMgmtSystemAppModule, { preserveWhitespaces: true })
   // eslint-disable-next-line no-console
   .then(success => console.log('Application started'))
   .catch(err => console.error(err));

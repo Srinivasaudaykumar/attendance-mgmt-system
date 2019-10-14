@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { throwError } from 'rxjs';
 
-import { AttendenceMgmtSystemTestModule } from '../../../test.module';
+import { AttendanceMgmtSystemTestModule } from '../../../test.module';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 import { SettingsComponent } from 'app/account/settings/settings.component';
@@ -15,7 +15,7 @@ describe('Component Tests', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [AttendenceMgmtSystemTestModule],
+        imports: [AttendanceMgmtSystemTestModule],
         declarations: [SettingsComponent],
         providers: [FormBuilder]
       })

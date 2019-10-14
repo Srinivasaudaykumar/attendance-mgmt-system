@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AttendenceMgmtSystemSharedModule } from 'app/shared/shared.module';
+import { AttendanceMgmtSystemSharedModule } from 'app/shared/shared.module';
 import { HOME_ROUTE } from './home.route';
 import { HomeComponent } from './home.component';
 
 @NgModule({
-  imports: [AttendenceMgmtSystemSharedModule, RouterModule.forChild([HOME_ROUTE])],
+  imports: [AttendanceMgmtSystemSharedModule, RouterModule.forChild([HOME_ROUTE])],
   declarations: [HomeComponent]
 })
-export class AttendenceMgmtSystemHomeModule {}
+export class AttendanceMgmtSystemHomeModule {}

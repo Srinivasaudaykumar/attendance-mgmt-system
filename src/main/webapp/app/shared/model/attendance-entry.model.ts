@@ -2,7 +2,7 @@ import { Moment } from 'moment';
 import { IAccessCard } from 'app/core/accesscard/access-card.model';
 import { IUser } from 'app/core/user/user.model';
 
-export interface IAttendenceEntry {
+export interface IAttendanceEntry {
   id?: number;
   createdDate?: Moment;
   machineId?: string;
@@ -10,7 +10,7 @@ export interface IAttendenceEntry {
   user?: IUser;
 }
 
-export class AttendenceEntry implements IAttendenceEntry {
+export class AttendanceEntry implements IAttendanceEntry {
   constructor(
     public id?: number,
     public createdDate?: Moment,

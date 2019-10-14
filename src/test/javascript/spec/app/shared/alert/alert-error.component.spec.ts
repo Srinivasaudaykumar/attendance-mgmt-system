@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
-import { AttendenceMgmtSystemTestModule } from '../../../test.module';
+import { AttendanceMgmtSystemTestModule } from '../../../test.module';
 import { JhiAlertErrorComponent } from 'app/shared/alert/alert-error.component';
 import { MockAlertService } from '../../../helpers/mock-alert.service';
 
@@ -14,7 +14,7 @@ describe('Component Tests', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [AttendenceMgmtSystemTestModule],
+        imports: [AttendanceMgmtSystemTestModule],
         declarations: [JhiAlertErrorComponent],
         providers: [
           JhiEventManager,
