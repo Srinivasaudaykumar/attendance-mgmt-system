@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { AttendenceMgmtSystemTestModule } from '../../../test.module';
+import { AttendanceMgmtSystemTestModule } from '../../../test.module';
 import { UserManagementUpdateComponent } from 'app/admin/user-management/user-management-update.component';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.model';
@@ -20,7 +20,7 @@ describe('Component Tests', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [AttendenceMgmtSystemTestModule],
+        imports: [AttendanceMgmtSystemTestModule],
         declarations: [UserManagementUpdateComponent],
         providers: [
           FormBuilder,

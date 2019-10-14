@@ -94,7 +94,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private AccessCard accessCard;
 
     @OneToMany(mappedBy = "user")
-    private Set<AttendanceEntry> attendenceEntries = new HashSet<>();
+    private Set<AttendanceEntry> attendanceEntries = new HashSet<>();
 
     @JsonIgnore
     @ManyToMany
@@ -233,29 +233,29 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.accessCard = accessCard;
     }
 
-    public Set<AttendanceEntry> getAttendenceEntries() {
-        return attendenceEntries;
+    public Set<AttendanceEntry> getAttendanceEntries() {
+        return attendanceEntries;
     }
 
-    public User attendenceEntries(Set<AttendanceEntry> attendenceEntries) {
-        this.attendenceEntries = attendenceEntries;
+    public User attendanceEntries(Set<AttendanceEntry> attendanceEntries) {
+        this.attendanceEntries = attendanceEntries;
         return this;
     }
 
-    public User addAttendenceEntry(AttendanceEntry attendanceEntry) {
-        this.attendenceEntries.add(attendanceEntry);
+    public User addAttendanceEntry(AttendanceEntry attendanceEntry) {
+        this.attendanceEntries.add(attendanceEntry);
         attendanceEntry.setUser(this);
         return this;
     }
 
-    public User removeAttendenceEntry(AttendanceEntry attendanceEntry) {
-        this.attendenceEntries.remove(attendanceEntry);
+    public User removeAttendanceEntry(AttendanceEntry attendanceEntry) {
+        this.attendanceEntries.remove(attendanceEntry);
         attendanceEntry.setUser(null);
         return this;
     }
 
-    public void setAttendenceEntries(Set<AttendanceEntry> attendenceEntries) {
-        this.attendenceEntries = attendenceEntries;
+    public void setAttendanceEntries(Set<AttendanceEntry> attendanceEntries) {
+        this.attendanceEntries = attendanceEntries;
     }
 
     @Override

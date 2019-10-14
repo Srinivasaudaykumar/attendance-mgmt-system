@@ -9,7 +9,7 @@ import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
-import { IAttendenceEntry, AttendenceEntry } from 'app/shared/model/attendance-entry.model';
+import { IAttendanceEntry, AttendanceEntry } from 'app/shared/model/attendance-entry.model';
 import { AttendanceEntryService } from './attendance-entry.service';
 import { IAccessCard } from 'app/core/accesscard/access-card.model';
 import { AccessCardService } from 'app/core/accesscard/access-card.service';
@@ -17,7 +17,7 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 
 @Component({
-  selector: 'jhi-attendence-entry-update',
+  selector: 'jhi-attendance-entry-update',
   templateUrl: './attendance-entry-update.component.html'
 })
 export class AttendanceEntryUpdateComponent implements OnInit {
@@ -37,7 +37,7 @@ export class AttendanceEntryUpdateComponent implements OnInit {
 
   constructor(
     protected jhiAlertService: JhiAlertService,
-    protected attendenceEntryService: AttendanceEntryService,
+    protected attendanceEntryService: AttendanceEntryService,
     protected accessCardService: AccessCardService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
@@ -46,8 +46,8 @@ export class AttendanceEntryUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.isSaving = false;
-    this.activatedRoute.data.subscribe(({ attendenceEntry }) => {
-      this.updateForm(attendenceEntry);
+    this.activatedRoute.data.subscribe(({ attendanceEntry }) => {
+      this.updateForm(attendanceEntry);
     });
     this.accessCardService
       .query()
@@ -65,13 +65,13 @@ export class AttendanceEntryUpdateComponent implements OnInit {
       .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
-  updateForm(attendenceEntry: IAttendenceEntry) {
+  updateForm(attendanceEntry: IAttendanceEntry) {
     this.editForm.patchValue({
-      id: attendenceEntry.id,
-      createdDate: attendenceEntry.createdDate != null ? attendenceEntry.createdDate.format(DATE_TIME_FORMAT) : null,
-      machineId: attendenceEntry.machineId,
-      accessCard: attendenceEntry.accessCard,
-      user: attendenceEntry.user
+      id: attendanceEntry.id,
+      createdDate: attendanceEntry.createdDate != null ? attendanceEntry.createdDate.format(DATE_TIME_FORMAT) : null,
+      machineId: attendanceEntry.machineId,
+      accessCard: attendanceEntry.accessCard,
+      user: attendanceEntry.user
     });
   }
 
@@ -81,17 +81,17 @@ export class AttendanceEntryUpdateComponent implements OnInit {
 
   save() {
     this.isSaving = true;
-    const attendenceEntry = this.createFromForm();
-    if (attendenceEntry.id !== undefined) {
-      this.subscribeToSaveResponse(this.attendenceEntryService.update(attendenceEntry));
+    const attendanceEntry = this.createFromForm();
+    if (attendanceEntry.id !== undefined) {
+      this.subscribeToSaveResponse(this.attendanceEntryService.update(attendanceEntry));
     } else {
-      this.subscribeToSaveResponse(this.attendenceEntryService.create(attendenceEntry));
+      this.subscribeToSaveResponse(this.attendanceEntryService.create(attendanceEntry));
     }
   }
 
-  private createFromForm(): IAttendenceEntry {
+  private createFromForm(): IAttendanceEntry {
     return {
-      ...new AttendenceEntry(),
+      ...new AttendanceEntry(),
       id: this.editForm.get(['id']).value,
       createdDate:
         this.editForm.get(['createdDate']).value != null ? moment(this.editForm.get(['createdDate']).value, DATE_TIME_FORMAT) : undefined,
@@ -101,7 +101,7 @@ export class AttendanceEntryUpdateComponent implements OnInit {
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IAttendenceEntry>>) {
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IAttendanceEntry>>) {
     result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
@@ -121,7 +121,7 @@ export class AttendanceEntryUpdateComponent implements OnInit {
     return item.id;
   }
 
-  trackEmployeeById(index: number, item: IUser) {
+  trackUserById(index: number, item: IUser) {
     return item.id;
   }
 }

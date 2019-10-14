@@ -30,7 +30,7 @@ public class AttendanceEntryResource {
 
     private final Logger log = LoggerFactory.getLogger(AttendanceEntryResource.class);
 
-    private static final String ENTITY_NAME = "attendenceEntry";
+    private static final String ENTITY_NAME = "attendanceEntry";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -42,35 +42,35 @@ public class AttendanceEntryResource {
     }
 
     /**
-     * {@code POST  /attendence-entries} : Create a new attendenceEntry.
+     * {@code POST  /attendance-entries} : Create a new attendanceEntry.
      *
-     * @param attendanceEntry the attendenceEntry to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new attendenceEntry, or with status {@code 400 (Bad Request)} if the attendenceEntry has already an ID.
+     * @param attendanceEntry the attendanceEntry to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new attendanceEntry, or with status {@code 400 (Bad Request)} if the attendanceEntry has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/attendence-entries")
-    public ResponseEntity<AttendanceEntry> createAttendenceEntry(@RequestBody AttendanceEntry attendanceEntry) throws URISyntaxException {
-        log.debug("REST request to save AttendenceEntry : {}", attendanceEntry);
+    @PostMapping("/attendance-entries")
+    public ResponseEntity<AttendanceEntry> createAttendanceEntry(@RequestBody AttendanceEntry attendanceEntry) throws URISyntaxException {
+        log.debug("REST request to save AttendanceEntry : {}", attendanceEntry);
         if (attendanceEntry.getId() != null) {
-            throw new BadRequestAlertException("A new attendenceEntry cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new attendanceEntry cannot already have an ID", ENTITY_NAME, "idexists");
         }
         AttendanceEntry result = attendanceEntryService.save(attendanceEntry);
-        return ResponseEntity.created(new URI("/api/attendence-entries/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/attendance-entries/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * {@code PUT  /attendence-entries} : Updates an existing attendenceEntry.
+     * {@code PUT  /attendance-entries} : Updates an existing attendanceEntry.
      *
-     * @param attendanceEntry the attendenceEntry to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated attendenceEntry,
-     * or with status {@code 400 (Bad Request)} if the attendenceEntry is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the attendenceEntry couldn't be updated.
+     * @param attendanceEntry the attendanceEntry to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated attendanceEntry,
+     * or with status {@code 400 (Bad Request)} if the attendanceEntry is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the attendanceEntry couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/attendence-entries")
-    public ResponseEntity<AttendanceEntry> updateAttendenceEntry(@RequestBody AttendanceEntry attendanceEntry) throws URISyntaxException {
+    @PutMapping("/attendance-entries")
+    public ResponseEntity<AttendanceEntry> updateAttendanceEntry(@RequestBody AttendanceEntry attendanceEntry) throws URISyntaxException {
         log.debug("REST request to update AttendenceEntry : {}", attendanceEntry);
         if (attendanceEntry.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -82,41 +82,41 @@ public class AttendanceEntryResource {
     }
 
     /**
-     * {@code GET  /attendence-entries} : get all the attendenceEntries.
+     * {@code GET  /attendance-entries} : get all the attendanceEntries.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of attendenceEntries in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of attendanceEntries in body.
      */
-    @GetMapping("/attendence-entries")
-    public ResponseEntity<List<AttendanceEntry>> getAllAttendenceEntries(Pageable pageable) {
-        log.debug("REST request to get a page of AttendenceEntries");
+    @GetMapping("/attendance-entries")
+    public ResponseEntity<List<AttendanceEntry>> getAllAttendanceEntries(Pageable pageable) {
+        log.debug("REST request to get a page of AttendanceEntries");
         Page<AttendanceEntry> page = attendanceEntryService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
-     * {@code GET  /attendence-entries/:id} : get the "id" attendenceEntry.
+     * {@code GET  /attendance-entries/:id} : get the "id" attendanceEntry.
      *
-     * @param id the id of the attendenceEntry to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the attendenceEntry, or with status {@code 404 (Not Found)}.
+     * @param id the id of the attendanceEntry to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the attendanceEntry, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/attendence-entries/{id}")
-    public ResponseEntity<AttendanceEntry> getAttendenceEntry(@PathVariable Long id) {
-        log.debug("REST request to get AttendenceEntry : {}", id);
-        Optional<AttendanceEntry> attendenceEntry = attendanceEntryService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(attendenceEntry);
+    @GetMapping("/attendance-entries/{id}")
+    public ResponseEntity<AttendanceEntry> getAttendanceEntry(@PathVariable Long id) {
+        log.debug("REST request to get AttendanceEntry : {}", id);
+        Optional<AttendanceEntry> attendanceEntry = attendanceEntryService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(attendanceEntry);
     }
 
     /**
-     * {@code DELETE  /attendence-entries/:id} : delete the "id" attendenceEntry.
+     * {@code DELETE  /attendance-entries/:id} : delete the "id" attendanceEntry.
      *
-     * @param id the id of the attendenceEntry to delete.
+     * @param id the id of the attendanceEntry to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/attendence-entries/{id}")
-    public ResponseEntity<Void> deleteAttendenceEntry(@PathVariable Long id) {
-        log.debug("REST request to delete AttendenceEntry : {}", id);
+    @DeleteMapping("/attendance-entries/{id}")
+    public ResponseEntity<Void> deleteAttendanceEntry(@PathVariable Long id) {
+        log.debug("REST request to delete AttendanceEntry : {}", id);
         attendanceEntryService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }

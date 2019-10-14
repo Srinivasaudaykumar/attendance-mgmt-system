@@ -5,10 +5,10 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       {
-        path: 'attendence-entry',
+        path: 'attendance-entry',
         loadChildren: () => import('./attendance-entry/attendance-entry.module').then(m => m.AttendanceEntryModule)
       } /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
   ]
 })
-export class AttendenceMgmtSystemEntityModule {}
+export class AttendanceMgmtSystemEntityModule {}

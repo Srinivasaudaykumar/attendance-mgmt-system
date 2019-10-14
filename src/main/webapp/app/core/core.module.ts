@@ -61,7 +61,7 @@ import { fontAwesomeIcons } from './icons/font-awesome-icons';
     }
   ]
 })
-export class AttendenceMgmtSystemCoreModule {
+export class AttendanceMgmtSystemCoreModule {
   constructor(iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {
     registerLocaleData(locale);
     iconLibrary.addIconPacks(fas);

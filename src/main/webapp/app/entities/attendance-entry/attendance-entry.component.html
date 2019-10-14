@@ -1,20 +1,20 @@
 <div>
     <h2 id="page-heading">
-        <span>Attendence Entries</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-attendence-entry" [routerLink]="['/attendence-entry/new']">
+        <span>Attendance Entries</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-attendance-entry" [routerLink]="['/attendence-entry/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
-            Create a new Attendence Entry
+            Create a new Attendance Entry
             </span>
         </button>
     </h2>
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="alert alert-warning" *ngIf="attendenceEntries?.length === 0">
-        <span>No attendenceEntries found</span>
+    <div class="alert alert-warning" *ngIf="attendanceEntries?.length === 0">
+        <span>No attendanceEntries found</span>
     </div>
-    <div class="table-responsive" *ngIf="attendenceEntries?.length > 0">
+    <div class="table-responsive" *ngIf="attendanceEntries?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
@@ -22,41 +22,41 @@
             <th scope="col"  jhiSortBy="createdDate"><span>Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="machineId"><span>Machine Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="accessCard.id"><span>Access Card</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="employee.id"><span>Employee</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="employee.id"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let attendenceEntry of attendenceEntries ;trackBy: trackId">
-                <td><a [routerLink]="['/attendence-entry', attendenceEntry.id, 'view' ]">{{attendenceEntry.id}}</a></td>
-                <td>{{attendenceEntry.createdDate | date:'medium'}}</td>
-                <td>{{attendenceEntry.machineId}}</td>
+            <tr *ngFor="let attendanceEntry of attendanceEntries ;trackBy: trackId">
+                <td><a [routerLink]="['/attendance-entry', attendanceEntry.id, 'view' ]">{{attendanceEntry.id}}</a></td>
+                <td>{{attendanceEntry.createdDate | date:'medium'}}</td>
+                <td>{{attendanceEntry.machineId}}</td>
                 <td>
-                    <div *ngIf="attendenceEntry.accessCard">
-                        <a [routerLink]="['/access-card', attendenceEntry.accessCard?.id, 'view' ]" >{{attendenceEntry.accessCard?.id}}</a>
+                    <div *ngIf="attendanceEntry.accessCard">
+                        <a [routerLink]="['/access-card', attendanceEntry.accessCard?.id, 'view' ]" >{{attendanceEntry.accessCard?.id}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="attendenceEntry.employee">
-                        <a [routerLink]="['/employee', attendenceEntry.employee?.id, 'view' ]" >{{attendenceEntry.employee?.id}}</a>
+                    <div *ngIf="attendanceEntry.user">
+                        <a [routerLink]="['/user', attendanceEntry.user?.id, 'view' ]" >{{attendanceEntry.user?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
-                                [routerLink]="['/attendence-entry', attendenceEntry.id, 'view' ]"
+                                [routerLink]="['/attendance-entry', attendanceEntry.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/attendence-entry', attendenceEntry.id, 'edit']"
+                                [routerLink]="['/attendance-entry', attendanceEntry.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/attendence-entry', { outlets: { popup: attendenceEntry.id + '/delete'} }]"
+                                [routerLink]="['/attendance-entry', { outlets: { popup: attendanceEntry.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

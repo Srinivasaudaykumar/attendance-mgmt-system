@@ -1,28 +1,28 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="attendenceEntry">
-            <h2><span>Attendence Entry</span> {{attendenceEntry.id}}</h2>
+        <div *ngIf="attendanceEntry">
+            <h2><span>Attendance Entry</span> {{attendanceEntry.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
                 <dt><span>Created Date</span></dt>
                 <dd>
-                    <span>{{attendenceEntry.createdDate}}</span>
+                    <span>{{attendanceEntry.createdDate}}</span>
                 </dd>
                 <dt><span>Machine Id</span></dt>
                 <dd>
-                    <span>{{attendenceEntry.machineId}}</span>
+                    <span>{{attendanceEntry.machineId}}</span>
                 </dd>
                 <dt><span>Access Card</span></dt>
                 <dd>
-                    <div *ngIf="attendenceEntry.accessCard">
-                        <a [routerLink]="['/access-card', attendenceEntry.accessCard?.id, 'view']">{{attendenceEntry.accessCard?.id}}</a>
+                    <div *ngIf="attendanceEntry.accessCard">
+                        <a [routerLink]="['/access-card', attendanceEntry.accessCard?.id, 'view']">{{attendanceEntry.accessCard?.id}}</a>
                     </div>
                 </dd>
                 <dt><span>Employee</span></dt>
                 <dd>
-                    <div *ngIf="attendenceEntry.employee">
-                        <a [routerLink]="['/employee', attendenceEntry.employee?.id, 'view']">{{attendenceEntry.employee?.id}}</a>
+                    <div *ngIf="attendanceEntry.user">
+                        <a [routerLink]="['/user', attendanceEntry.user?.id, 'view']">{{attendanceEntry.user?.id}}</a>
                     </div>
                 </dd>
             </dl>
@@ -34,7 +34,7 @@
             </button>
 
             <button type="button"
-                    [routerLink]="['/attendence-entry', attendenceEntry.id, 'edit']"
+                    [routerLink]="['/attendance-entry', attendanceEntry.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
             </button>

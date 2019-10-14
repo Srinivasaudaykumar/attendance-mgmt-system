@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { IAttendenceEntry } from 'app/shared/model/attendance-entry.model';
+import { IAttendanceEntry } from 'app/shared/model/attendance-entry.model';
 
 @Component({
-  selector: 'jhi-attendence-entry-detail',
+  selector: 'jhi-attendance-entry-detail',
   templateUrl: './attendance-entry-detail.component.html'
 })
 export class AttendanceEntryDetailComponent implements OnInit {
-  attendenceEntry: IAttendenceEntry;
+  attendanceEntry: IAttendanceEntry;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(({ attendenceEntry }) => {
-      this.attendenceEntry = attendenceEntry;
+    this.activatedRoute.data.subscribe(({ attendanceEntry }) => {
+      this.attendanceEntry = attendanceEntry;
     });
   }
 

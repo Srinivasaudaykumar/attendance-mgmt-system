@@ -4,18 +4,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { IAttendenceEntry } from 'app/shared/model/attendance-entry.model';
+import { IAttendanceEntry } from 'app/shared/model/attendance-entry.model';
 import { AttendanceEntryService } from './attendance-entry.service';
 
 @Component({
-  selector: 'jhi-attendence-entry-delete-dialog',
+  selector: 'jhi-attendance-entry-delete-dialog',
   templateUrl: './attendance-entry-delete-dialog.component.html'
 })
 export class AttendanceEntryDeleteDialogComponent {
-  attendenceEntry: IAttendenceEntry;
+  attendanceEntry: IAttendanceEntry;
 
   constructor(
-    protected attendenceEntryService: AttendanceEntryService,
+    protected attendanceEntryService: AttendanceEntryService,
     public activeModal: NgbActiveModal,
     protected eventManager: JhiEventManager
   ) {}
@@ -25,10 +25,10 @@ export class AttendanceEntryDeleteDialogComponent {
   }
 
   confirmDelete(id: number) {
-    this.attendenceEntryService.delete(id).subscribe(response => {
+    this.attendanceEntryService.delete(id).subscribe(response => {
       this.eventManager.broadcast({
-        name: 'attendenceEntryListModification',
-        content: 'Deleted an attendenceEntry'
+        name: 'attendanceEntryListModification',
+        content: 'Deleted an attendanceEntry'
       });
       this.activeModal.dismiss(true);
     });
@@ -36,26 +36,26 @@ export class AttendanceEntryDeleteDialogComponent {
 }
 
 @Component({
-  selector: 'jhi-attendence-entry-delete-popup',
+  selector: 'jhi-attendance-entry-delete-popup',
   template: ''
 })
-export class AttendenceEntryDeletePopupComponent implements OnInit, OnDestroy {
+export class AttendanceEntryDeletePopupComponent implements OnInit, OnDestroy {
   protected ngbModalRef: NgbModalRef;
 
   constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) {}
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(({ attendenceEntry }) => {
+    this.activatedRoute.data.subscribe(({ attendanceEntry }) => {
       setTimeout(() => {
         this.ngbModalRef = this.modalService.open(AttendanceEntryDeleteDialogComponent as Component, { size: 'lg', backdrop: 'static' });
-        this.ngbModalRef.componentInstance.attendenceEntry = attendenceEntry;
+        this.ngbModalRef.componentInstance.attendanceEntry = attendanceEntry;
         this.ngbModalRef.result.then(
           result => {
-            this.router.navigate(['/attendence-entry', { outlets: { popup: null } }]);
+            this.router.navigate(['/attendance-entry', { outlets: { popup: null } }]);
             this.ngbModalRef = null;
           },
           reason => {
-            this.router.navigate(['/attendence-entry', { outlets: { popup: null } }]);
+            this.router.navigate(['/attendance-entry', { outlets: { popup: null } }]);
             this.ngbModalRef = null;
           }
         );

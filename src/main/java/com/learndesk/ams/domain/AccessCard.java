@@ -24,7 +24,7 @@ public class AccessCard implements Serializable {
     private String cardNumber;
 
     @OneToMany(mappedBy = "accessCard")
-    private Set<AttendanceEntry> attendenceEntries = new HashSet<>();
+    private Set<AttendanceEntry> attendanceEntries = new HashSet<>();
 
     @OneToOne(mappedBy = "accessCard")
     @JsonIgnore
@@ -52,29 +52,29 @@ public class AccessCard implements Serializable {
         this.cardNumber = cardNumber;
     }
 
-    public Set<AttendanceEntry> getAttendenceEntries() {
-        return attendenceEntries;
+    public Set<AttendanceEntry> getAttendanceEntries() {
+        return attendanceEntries;
     }
 
-    public AccessCard attendenceEntries(Set<AttendanceEntry> attendenceEntries) {
-        this.attendenceEntries = attendenceEntries;
+    public AccessCard attendanceEntries(Set<AttendanceEntry> attendanceEntries) {
+        this.attendanceEntries = attendanceEntries;
         return this;
     }
 
-    public AccessCard addAttendenceEntry(AttendanceEntry attendanceEntry) {
-        this.attendenceEntries.add(attendanceEntry);
+    public AccessCard addAttendanceEntry(AttendanceEntry attendanceEntry) {
+        this.attendanceEntries.add(attendanceEntry);
         attendanceEntry.setAccessCard(this);
         return this;
     }
 
-    public AccessCard removeAttendenceEntry(AttendanceEntry attendanceEntry) {
-        this.attendenceEntries.remove(attendanceEntry);
+    public AccessCard removeAttendanceEntry(AttendanceEntry attendanceEntry) {
+        this.attendanceEntries.remove(attendanceEntry);
         attendanceEntry.setAccessCard(null);
         return this;
     }
 
-    public void setAttendenceEntries(Set<AttendanceEntry> attendenceEntries) {
-        this.attendenceEntries = attendenceEntries;
+    public void setAttendanceEntries(Set<AttendanceEntry> attendanceEntries) {
+        this.attendanceEntries = attendanceEntries;
     }
 
     public AccessCard user(User user) {

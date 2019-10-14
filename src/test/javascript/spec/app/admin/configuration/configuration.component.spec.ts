@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { AttendenceMgmtSystemTestModule } from '../../../test.module';
+import { AttendanceMgmtSystemTestModule } from '../../../test.module';
 import { JhiConfigurationComponent } from 'app/admin/configuration/configuration.component';
 import { JhiConfigurationService } from 'app/admin/configuration/configuration.service';
 
@@ -13,7 +13,7 @@ describe('Component Tests', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [AttendenceMgmtSystemTestModule],
+        imports: [AttendanceMgmtSystemTestModule],
         declarations: [JhiConfigurationComponent],
         providers: [JhiConfigurationService]
       })

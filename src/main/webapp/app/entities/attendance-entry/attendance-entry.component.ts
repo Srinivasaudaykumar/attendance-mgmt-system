@@ -4,18 +4,18 @@ import { Subscription } from 'rxjs';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 
-import { IAttendenceEntry } from 'app/shared/model/attendance-entry.model';
+import { IAttendanceEntry } from 'app/shared/model/attendance-entry.model';
 import { AccountService } from 'app/core/auth/account.service';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { AttendanceEntryService } from './attendance-entry.service';
 
 @Component({
-  selector: 'jhi-attendence-entry',
+  selector: 'jhi-attendance-entry',
   templateUrl: './attendance-entry.component.html'
 })
 export class AttendanceEntryComponent implements OnInit, OnDestroy {
-  attendenceEntries: IAttendenceEntry[];
+  attendanceEntries: IAttendanceEntry[];
   currentAccount: any;
   eventSubscriber: Subscription;
   itemsPerPage: number;
@@ -26,12 +26,12 @@ export class AttendanceEntryComponent implements OnInit, OnDestroy {
   totalItems: number;
 
   constructor(
-    protected attendenceEntryService: AttendanceEntryService,
+    protected attendanceEntryService: AttendanceEntryService,
     protected eventManager: JhiEventManager,
     protected parseLinks: JhiParseLinks,
     protected accountService: AccountService
   ) {
-    this.attendenceEntries = [];
+    this.attendanceEntries = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
     this.links = {
@@ -42,18 +42,18 @@ export class AttendanceEntryComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
-    this.attendenceEntryService
+    this.attendanceEntryService
       .query({
         page: this.page,
         size: this.itemsPerPage,
         sort: this.sort()
       })
-      .subscribe((res: HttpResponse<IAttendenceEntry[]>) => this.paginateAttendenceEntries(res.body, res.headers));
+      .subscribe((res: HttpResponse<IAttendanceEntry[]>) => this.paginateAttendanceEntries(res.body, res.headers));
   }
 
   reset() {
     this.page = 0;
-    this.attendenceEntries = [];
+    this.attendanceEntries = [];
     this.loadAll();
   }
 
@@ -67,19 +67,19 @@ export class AttendanceEntryComponent implements OnInit, OnDestroy {
     this.accountService.identity().subscribe(account => {
       this.currentAccount = account;
     });
-    this.registerChangeInAttendenceEntries();
+    this.registerChangeInAttendanceEntries();
   }
 
   ngOnDestroy() {
     this.eventManager.destroy(this.eventSubscriber);
   }
 
-  trackId(index: number, item: IAttendenceEntry) {
+  trackId(index: number, item: IAttendanceEntry) {
     return item.id;
   }
 
-  registerChangeInAttendenceEntries() {
-    this.eventSubscriber = this.eventManager.subscribe('attendenceEntryListModification', response => this.reset());
+  registerChangeInAttendanceEntries() {
+    this.eventSubscriber = this.eventManager.subscribe('attendanceEntryListModification', response => this.reset());
   }
 
   sort() {
@@ -90,11 +90,11 @@ export class AttendanceEntryComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  protected paginateAttendenceEntries(data: IAttendenceEntry[], headers: HttpHeaders) {
+  protected paginateAttendanceEntries(data: IAttendanceEntry[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     for (let i = 0; i < data.length; i++) {
-      this.attendenceEntries.push(data[i]);
+      this.attendanceEntries.push(data[i]);
     }
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AttendenceMgmtSystemSharedModule } from 'app/shared/shared.module';
+import { AttendanceMgmtSystemSharedModule } from 'app/shared/shared.module';
 
 import { JhiHealthCheckComponent } from './health.component';
 import { JhiHealthModalComponent } from './health-modal.component';
@@ -8,7 +8,7 @@ import { JhiHealthModalComponent } from './health-modal.component';
 import { healthRoute } from './health.route';
 
 @NgModule({
-  imports: [AttendenceMgmtSystemSharedModule, RouterModule.forChild([healthRoute])],
+  imports: [AttendanceMgmtSystemSharedModule, RouterModule.forChild([healthRoute])],
   declarations: [JhiHealthCheckComponent, JhiHealthModalComponent],
   entryComponents: [JhiHealthModalComponent]
 })
